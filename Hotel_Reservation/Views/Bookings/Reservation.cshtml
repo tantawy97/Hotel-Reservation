@@ -1,0 +1,49 @@
+﻿@model List<Booking>
+@{
+    ViewData["Title"] = "Reservation";
+    Layout = "_MyLayout";
+             
+}
+<br />
+<br />
+<br />
+<br />
+<br />
+            <div class="container">
+@foreach(var item in Model){
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">@item.customer.UserName</h5>
+    <h6 class="card-subtitle mb-2 text-muted">@item.RoomType.Type</h6>
+
+    <a asp-action="accept" asp-controller="bookings" asp-route-id="@item.Id" id="accept"  class="card-link">Accept</a>
+    <a asp-action="Refuse" asp-controller="bookings" asp-route-id="@item.Id" id="refuse" class="card-link">Refuse</a>
+    <input asp-for="@item.Id" id="id" hidden >
+  </div>
+</div>
+}
+</div>
+
+
+
+@*<script>
+	   function getData(){
+		   var element = document.getElementById("accept");
+		   var element1 = document.getElementById("refuse");
+		    
+        var id=$("#id").val();
+        $.ajax(
+            {
+                url: "/Bookings/Accept",//?stdid="+id,
+                data:{"id":id},
+                success: function(result){
+                 
+                // alert(result);
+                //document.getElementById("div1").innerHTML=result;
+                    //dom
+                }
+            }
+         );
+    }
+	
+	</script>*@

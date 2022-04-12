@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Hotel_Reservation.Models.RoomType>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_MyLayout";
+}
+
+  <div class="contact main-font-family text-center">
+            <div class="container">
+                <br />
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-6">
+                        <div class="contact-form">
+                            <form asp-action="Index" asp-controller="RoomTypes">
+                                
+                              <table class="table">
+                        <thead>
+                      <tr>
+                      <th>
+                     @Html.DisplayNameFor(model => model.Type)
+                    </th>
+                   <th></th>
+                    </tr>
+                 </thead>
+                   <tbody>
+                    @foreach (var item in Model) {
+                          <tr>
+                         <td class="text-light">
+                          @Html.DisplayFor(modelItem => item.Type)
+                         </td>
+                        <td>
+                         <a class="text-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                          <a class="text-warning" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                     </td>
+                     </tr>
+                      }
+                   </tbody>
+                       </table>
+                            </form>
+
+                            <div>
+                              <a class="text-warning" asp-action="Create">Create New</a>
+                           </div>
+                            <div >
+                                <a class="small text-light" asp-action="index" asp-controller="Home">Back to Home Page</a>
+                            </div>
+                            
+                            
+
+                        </div>
+                    </div>
+                 
+                    <div class="col-6">
+                        <h2 class="text-right">Room Types</h2>
+                        <img src="/imgs/shape.png">
+                        
+                    </div>
+                </div>
+            </div>
+            <div></div>
+        </div>
+      
+        
+   @section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+
+
+

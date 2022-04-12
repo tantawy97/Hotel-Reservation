@@ -1,0 +1,68 @@
+﻿@model Hotel_Reservation.Models.RoomType
+
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_MyLayout";
+}
+
+  <div class="contact main-font-family text-center">
+            <div class="container">
+                <br />
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-6">
+                        <div class="contact-form">
+                            <form asp-action="Create" asp-controller="RoomTypes">
+                               <div asp-validation-summary="ModelOnly" class="text-light"></div>
+            <div class="form-group">
+                <label asp-for="Type" class="control-label"></label>
+                <input asp-for="Type" class="form-control" />
+                <span asp-validation-for="Type" class="text-light"></span>
+            </div>
+                                
+
+                                      <div class="form-group">
+
+                                <input type="submit" value="Add">
+                                         </div>
+                            </form>
+
+                            <div >
+                                <a class="small text-light" asp-action="index" >Back to List</a>
+                            </div>
+                        </div>
+                    </div>
+                 
+                    <div class="col-6">
+                        <h2 class="text-right">Add Room Type</h2>
+                        <img src="/imgs/shape.png">
+                        
+                    </div>
+                </div>
+            </div>
+            <div></div>
+        </div>
+      
+        
+   @section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

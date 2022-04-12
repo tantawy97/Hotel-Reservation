@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Five Hotel</title>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/fontawesome.min.css">
+        <link rel="stylesheet" href="/css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Lobster|Lobster+Two|Noto+Serif" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    </head>
+    <body>
+        
+        <nav class="navbar navbar-expand-lg navbar-light bg-light text-capitalize main-font-family">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"><img src="/imgs/logo.png" alt="#" /></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#show-menu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="show-menu">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-action="Index" asp-controller="Home">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="Index" asp-controller="Rooms">rooms</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link" asp-action="Index" asp-controller="RoomTypes">Room Types</a>
+                        </li>
+                      
+                         @if (User.Identity.IsAuthenticated&&User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="Index" asp-controller="Bookings" >Reservations</a>
+                        </li>
+                    }
+                    @if (!User.Identity.IsAuthenticated)
+                        {
+                        <li class="nav-item">
+                         
+                         
+                          <a class="nav-link" asp-action="Login" asp-controller="Account">Login</a>
+                       
+                        </li>
+                    } 
+                  
+                    else
+                        {
+                            <li class="nav-item">
+                         
+                           <a class="nav-link" asp-action="Logout" asp-controller="Account">Log Out</a>
+                        </li>
+                        }
+                             @if (!User.Identity.IsAuthenticated||User.IsInRole("User"))
+                    {
+                        <li class="nav-item">
+                         
+                         
+                          <a class="nav-link" asp-action="GetMyActivity" asp-controller="Bookings">My Reservation</a>
+                       
+                        </li>
+                    }
+                           @if (!User.Identity.IsAuthenticated||User.IsInRole("User"))
+                    {
+                        <li class="nav-item book d-flex align-items-center">
+                            <a class="nav-link" asp-action="Create" asp-controller="bookings">book now</a>
+                        </li>
+                    }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+   
+   
+
+    <div>
+        @RenderBody()
+    </div>
+  <footer class="noto-font-family">
+            <div class="overlay">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <h3>Useful links</h3>
+                            <ul class="text-capitalize">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Rooms</a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="Account/Register">Register</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <h3>Find us</h3>
+                            <p>Healing Center, 176 W Street name,<br>
+                                New York, NY 10014, US<br>
+                                (+71) 987 654 3210<br>
+                                (+71) 987 654 3210<br>
+                                fivehotel@gmail.com
+                            </p>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12 form">
+                           
+                            <br />
+                            <br />
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+        <div class="copyright noto-font-family">
+            <p>© 2019 All Rights Reserved. Design by <a href="https://html.design/">Free Html Templates</a></p>
+        </div>
+        
+        <script src="/js/jquery-3.3.1.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+@*        <script>
+            $(function () {
+                
+                'use strict';
+                
+                var winH = $(window).height();
+                
+                $('header').height(winH);
+                
+                $('.navbar ul.navbar-nav li a').on('click', function (e) {
+                    
+                    var getAttr = $(this).attr('href');
+                    
+                    e.preventDefault();
+                    $('html').animate({scrollTop: $(getAttr).offset().top}, 1000);
+                });
+            });
+        </script>*@
+            @await RenderSectionAsync("Scripts", required: false)
+
+    </body>
+</html>
+ 
+    
